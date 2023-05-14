@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/CFH_favicon.png}">
+    <title>CFH:LB Users</title>
+    <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <nav th:insert="fragments :: nav"></nav>
+
+    <div class="container-users">
+        <h1 class="table-title">Users</h1>
+
+        <table border="1" class="user">
+        <thead>
+            <tr>
+                <th>E-Mail</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each = "user : ${listUsers}">
+                <td th:text = "${user.email}"></td>
+                <td th:text = "${user.firstName}"></td>
+                <td th:text = "${user.lastName}"></td>
+            </tr>
+        </tbody>
+        </table>
+
+
+        <nav aria-label="pagination domination" th:if="${totalPages > 1}" class="table-title">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled" style="font-size: 15px; color: #3a1027;">Total Users: [[${totalItems}]]</li>
+            <br>
+            <li class="page-item">
+                <a class="page-link" tabindex="-1" aria-disabled="true" th:if="${currentPage > 1}" th:href="@{'/page/1'}">First</a>
+                <span th:unless="${currentPage > 1}">First</span>
+            </li>
+            <li class="page-item"><a class="page-link" 
+                <a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1}}">&#60;</a>
+                <span th:unless="${currentPage > 1}">&#60;</span> 
+            </li>
+            <li class="page-item">
+                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;</span>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">&#62;</a>
+                <span th:unless="${currentPage < totalPages}">&#62;</span>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </li>
+        </ul>
+        </nav>
+    
+    </div>
+
+
+    <footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/CFH_favicon.png}">
+    <title>CFH:LB Login</title>
+    <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <nav th:insert="fragments :: nav"></nav>
+
+    <main>
+
+    <h1>Login</h1>
+
+    <div class="space"></div>
+
+    <div class="form-wrapper">
+    <form th:action="@{/login}" method="post" class="crud-center">
+        <!-- error message -->
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">Invalid username/email or
+                password.</div>
+        </div>
+
+        <!-- logout message -->
+        <div th:if="${param.logout}">
+            <div class="alert alert-info">You have been logged out.</div>
+        </div>
+
+        <div class = "form-group">
+            <div class = login-bar>
+                <label for="username"> E-Mail </label> :
+                <input type="text"
+                       class = "input-field"
+                       name="username" id="username"
+                       placeholder="Enter e-mail as username">
+            </div>
+        </div>
+
+        <div class="form-group field">
+            <!--<label for="password">Password</label>: -->
+            <i class="fa fa-lock"></i>
+            <input type="password"
+                class="input-field"
+                name="password" id="password"
+                placeholder="Password" />
+        </div>
+        
+        <div class="form-group">
+            <div class="">
+                <div class="login-bar">
+                    <input type="submit" class="login-register-button"
+                        value="Log In" />
+                </div>
+            </div>
+        </div>
+
+        <div class="login-register-here">
+            <span>New user? <a href="/" th:href="@{/register}">Register here</a></span>
+        </div>
+
+    </form>
+
+</div>
+
+</main>
+
+    <footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>
