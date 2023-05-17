@@ -27,6 +27,11 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
+    
+    @Column(name = "image_path")
+    private String imagePath;
+    
+    
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User author; //= new User("","","","",  null);
 
@@ -38,19 +43,21 @@ public class Post {
 
     public Post(){}
 
-    public Post(long id, String title, String content, User author, String authorFullName){
+    public Post(long id, String title, String content, User author, String authorFullName, String imagePath){
         this.id  = id;
         this.title = title;
         this.content = content;
         this.author = author;
         this.authorFullName = authorFullName;
+        this.imagePath= imagePath;
     }
 
-    public Post(String title, String content, User author, String authorFullName){
+    public Post(String title, String content, User author, String authorFullName, String imagePath){
         this.title = title;
         this.content = content;
         this.author = author;
         this.authorFullName = authorFullName;
+        this.imagePath= imagePath;
     }
 
     /**
@@ -67,6 +74,19 @@ public class Post {
         this.id = id;
     }
 
+    
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+    
+    
     /**
      * @return String return the title
      */

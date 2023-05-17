@@ -21,6 +21,12 @@
     <p th:text = "${date}"></p>
     <p th:text = "${content}"></p>
     <p th:text = "${id}"></p>
+    
+    {% if post.imagePath != null %}
+    <img src="${post.imagePath}" alt="Post Image">
+
+{% endif %}
+    
 </div>
 
 <footer th:insert="fragments :: footer"></footer>

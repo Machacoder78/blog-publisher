@@ -18,7 +18,7 @@
     <main>
     <h1>Create New Blog Post</h1>
 
-    <form class="blog-entry" action="#" th:action="@{/create}" th:object="${post}" method="POST">
+    <form class="blog-entry" action="#" th:action="@{/create}" th:object="${post}" method="POST" enctype="multipart/form-data">
 
         <div class="required-content">Share your thoughs with us! </div>
         <div>
@@ -36,6 +36,11 @@
                       th:field="*{content}"
                       placeholder="Enter Blog Content" th:required="required"></textarea>
         </div>
+        
+          <label for="image">Image</label>
+    <input type="file" class="form-control-file" id="image" name="image">
+        
+        
         <div>
             <button type="submit" class="btn btn-default post">Post</button>
             <a th:href="@{/posts}" class="btn btn-default cancel">Cancel</a>

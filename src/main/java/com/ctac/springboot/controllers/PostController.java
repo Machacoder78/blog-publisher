@@ -10,8 +10,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
 import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -62,42 +65,128 @@ public class PostController {
     public String createPostPage(Model model) {
         String authUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByUsername(authUsername);
-        Object title, content;
+        Object title, content,imagePath;
         String authorFullName = "";
         title = model.getAttribute("title");
         content = model.getAttribute("content");
-        Post post = new Post((String)title,(String)content,user, authorFullName);
+        imagePath = model.getAttribute("imagePath");
+        Post post = new Post((String)title,(String)content,user, authorFullName, (String) imagePath);
         model.addAttribute("post", post);
         return "create-post";
     }
 
+//    @PostMapping("/create")
+//    public String savePost(@ModelAttribute("post") Post post) {
+//        String authUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+//        User user = userService.getUserByUsername(authUsername);
+//        post.setAuthor(user);
+//        post.setAuthorFullName(user.getFirstName() + " " + user.getLastName());
+//        postService.create(post);
+//        return "redirect:/posts";
+//    }
+    
+    
+    
     @PostMapping("/create")
-    public String savePost(@ModelAttribute("post") Post post) {
+    public String savePost(@ModelAttribute("post") Post post,
+                           @RequestParam("image") MultipartFile image) throws IOException {
         String authUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByUsername(authUsername);
         post.setAuthor(user);
         post.setAuthorFullName(user.getFirstName() + " " + user.getLastName());
+
+        // Handle image upload
+        if (!image.isEmpty()) {
+            String imageName = UUID.randomUUID().toString() + ".jpg";
+            String imagePath = "/uploads/" + imageName;
+            String absoluteImagePath = new File("src/main/resources/static/images/uploads", imageName).getAbsolutePath();
+            image.transferTo(new File(absoluteImagePath));
+            post.setImagePath(imagePath);
+        }
+
         postService.create(post);
         return "redirect:/posts";
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+//    @PostMapping("/create")
+//    public String savePost(@ModelAttribute("post") Post post,
+//                            @RequestParam("image") MultipartFile image) throws IOException {
+//        String authUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+//        User user = userService.getUserByUsername(authUsername);
+//        post.setAuthor(user);
+//        post.setAuthorFullName(user.getFirstName() + " " + user.getLastName());
+//        
+//        // Handle image upload
+//        if (!image.isEmpty()) {
+//            String imageName = UUID.randomUUID().toString() + ".jpg";
+//            String imagePath = "uploads/" + imageName;
+//            image.transferTo(new File("images/" + imagePath));
+//            post.setImagePath(imagePath);
+//        }
+//
+//        postService.create(post);
+//        return "redirect:/posts";
+//    }
+
+    
+    
+    
+    
+
+//    @PostMapping("/save")
+//    public String updatePost(@ModelAttribute("post") Post post, Model model) {
+//        String authUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+//        User user = userService.getUserByUsername(authUsername);
+//
+//       /*if (post.getTitle().isEmpty()) {
+//            model.addAttribute("errorMessage", "Field Cannot Be Empty");
+//            return "/edit-post/{id}";
+//        } if (post.getContent().isEmpty()) {
+//            model.addAttribute("errorMessage", "Field Cannot Be Empty");
+//            return "/edit-post/{id}";
+//        }*/
+//        post.setAuthor(user);
+//        post.setAuthorFullName(user.getFirstName() + " " + user.getLastName());
+//        postService.create(post);
+//        return "redirect:/posts";
+//    }
+    
+    
+    
+    
     @PostMapping("/save")
-    public String updatePost(@ModelAttribute("post") Post post, Model model) {
+    public String updatePost(@ModelAttribute("post") Post post,
+                              @RequestParam("image") MultipartFile image) throws IOException {
         String authUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByUsername(authUsername);
-
-       /*if (post.getTitle().isEmpty()) {
-            model.addAttribute("errorMessage", "Field Cannot Be Empty");
-            return "/edit-post/{id}";
-        } if (post.getContent().isEmpty()) {
-            model.addAttribute("errorMessage", "Field Cannot Be Empty");
-            return "/edit-post/{id}";
-        }*/
         post.setAuthor(user);
         post.setAuthorFullName(user.getFirstName() + " " + user.getLastName());
-        postService.create(post);
+
+        // Handle image upload
+        if (!image.isEmpty()) {
+            String imageName = UUID.randomUUID().toString() + ".jpg";
+            String imagePath = "/uploads/" + imageName;
+            String absoluteImagePath = new File("src/main/resources/static/images/uploads", imageName).getAbsolutePath();
+            image.transferTo(new File(absoluteImagePath));
+            post.setImagePath(imagePath);
+        }
+
+        postService.edit(post);
         return "redirect:/posts";
     }
+
+    
+    
+    
+    
 
     @GetMapping("/delete-post/{id}")
     public String deletePost(@PathVariable (value = "id") long id, Model model) {
