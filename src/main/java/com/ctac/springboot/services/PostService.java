@@ -18,4 +18,6 @@ public interface PostService {
     void deleteById(Long id);
     Optional<Post> findById(Long id);
     Page<Post> postPagination(int pageNo, int pageSize);
+    List<Post> searchPosts(String keyword);
+
 }

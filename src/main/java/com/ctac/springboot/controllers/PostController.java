@@ -223,4 +223,11 @@ public class PostController {
 
         return "index";
     }
+    @GetMapping("/search")
+    public String searchPosts(@RequestParam("keyword") String keyword, Model model) {
+        List<Post> searchResults = postService.searchPosts(keyword);
+        model.addAttribute("searchResults", searchResults);
+        return "search-results";
+    }
+
 }
