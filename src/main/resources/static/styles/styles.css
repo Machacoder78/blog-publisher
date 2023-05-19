@@ -11,15 +11,14 @@
 }
 
 .alert-danger, .alert-info {
-    margin-top: -40px !important; 
+    margin-top: -40px !important;
+color: red;
 }
 
 .container-fluid {
     border-bottom: solid;
     border-bottom-color: #3A1027;
     width: 100%;
-
-
 }
 
 .nav-font li a {
@@ -653,7 +652,6 @@ h1 {
 .space {margin-bottom: 100px;}
 
 form{
-    padding-top: 75px;
     margin-top: 50px;
 }
 
@@ -789,3 +787,85 @@ div > .cancel {
     margin: 15px auto;
     box-shadow: -4px 4px;
 }
+
+
+
+
+.align {
+	 align-items: center;
+	 display: flex;
+	 flex-direction: row;
+}
+ .align__item--start {
+	 align-self: flex-start;
+}
+ .align__item--end {
+	 align-self: flex-end;
+}
+ .site__logo {
+	 margin-bottom: 2rem;
+}
+ input {
+	 border: 0;
+	 font: inherit;
+}
+ input::placeholder {
+	 color: #7e8ba3;
+}
+ .form__field {
+	 margin-bottom: 1rem;
+}
+ .form input {
+	 outline: 0;
+	 padding: 0.5rem 1rem;
+}
+ .form input[type="email"], .form input[type="password"] {
+	 width: 100%;
+}
+ .grid {
+	 margin: 2rem auto;
+	 max-width: 25rem;
+	 width: 100%;
+	 border-radius: 50%;
+}
+ h2 {
+	 font-size: 2.75rem;
+	 font-weight: 100;
+	 margin: 0 0 1rem;
+	 text-transform: uppercase;
+}
+ .logoicon {
+	 height: auto;
+max-width: 20%;
+vertical-align: middle;
+display: inline;
+}
+ a {
+	 color: #7e8ba3;
+}
+ .register {
+box-shadow: 0 40px 100px #a694c0;
+text-align: center;
+padding: 2rem 1rem;
+border-radius: 10%;
+}
+ .register input {
+	 border: 1px solid #242c37;
+	 border-radius: 999px;
+	 background-color: transparent;
+	 text-align: center;
+}
+ .register input[type="text"], .register input[type="password"] {
+	 background-repeat: no-repeat;
+	 background-size: 1.5rem;
+	 background-position: 1rem 50%;
+	 width: 100%;
+}
+
+ .register input[type="submit"] {
+	 background-image: linear-gradient(160deg, #cec4dc 0%, #7030cb 100%);
+	 color: #fff;
+	 margin-bottom: 1rem;
+	 width: 100%;
+}
+ 

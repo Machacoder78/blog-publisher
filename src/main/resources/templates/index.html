@@ -4,12 +4,17 @@
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
-    <link rel="icon" th:href="@{/images/CFH_favicon.png}">
-    <title>CFH LiveBlog</title>
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>TEMA BLOG</title>
     <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+ <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 
+<!-- Bootstrap JS bundle (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   
@@ -21,14 +26,14 @@
             <div id="recent-post-title">
                 <h2>Recent Posts</h2>
             </div>
-            <div class="blog-container" th:each="post : ${latest3posts}">
-                <div class="blog-container-title">
+            <div class="blog-Container" th:each="post : ${latest3posts}">
+                <div class="blog-Container-title">
                     <h2 th:text = "${post.title}"></h2>
                 </div>
-                <div class="blog-container-content">
+                <div class="blog-Container-content">
                     <p th:text = "${post.content}"></p>
                 </div>
-                <div class="blog-container-footer">
+                <div class="blog-Container-footer">
                     <p>Posted by: <span th:text = "${post.authorFullName}"></span> on <span th:text = "${post.date}"></span></p>
                 </div>
                 <img th:src="@{/images__${post.imagePath}__}" lt="Post Image" height="60px" />
@@ -54,18 +59,18 @@
 </body>
   <script>
 // Open and Close Navbar Menu
-const navbarMenu = document.getElementById("menu");
+const NavbarMenu = document.getElementById("menu");
 const burgerMenu = document.getElementById("burger");
 const bgOverlay = document.querySelector(".overlay");
 
 if (burgerMenu && bgOverlay) {
    burgerMenu.addEventListener("click", () => {
-      navbarMenu.classList.add("is-active");
+      NavbarMenu.classList.add("is-active");
       bgOverlay.classList.toggle("is-active");
    });
 
    bgOverlay.addEventListener("click", () => {
-      navbarMenu.classList.remove("is-active");
+      NavbarMenu.classList.remove("is-active");
       bgOverlay.classList.toggle("is-active");
    });
 }
@@ -73,7 +78,7 @@ if (burgerMenu && bgOverlay) {
 // Close Navbar Menu on Links Click
 document.querySelectorAll(".menu-link").forEach((link) => {
    link.addEventListener("click", () => {
-      navbarMenu.classList.remove("is-active");
+      NavbarMenu.classList.remove("is-active");
       bgOverlay.classList.remove("is-active");
    });
 });

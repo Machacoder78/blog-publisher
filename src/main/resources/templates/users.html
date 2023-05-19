@@ -2,31 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" th:href="@{/images/CFH_favicon.png}">
-    <title>CFH:LB Users</title>
+<meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>TEMA BLOG</title>
     <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap-grid.css" integrity="sha512-ydsH43E0w5jdJF8+tvH1bRfnHmQ0fhhQZ3fKfQWgnLoWNeGVczK/A2tb4d6+/y8o0G62bSxizTGwpqgAp9Xd8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 
     <nav th:insert="fragments :: nav"></nav>
 
-    <div class="container-users">
-        <h1 class="table-title">Users</h1>
 
-        <table border="1" class="user">
-        <thead>
+
+
+
+    <div class="container">
+    <h1 class="mt-4 mb-4">users</h1>
+
+    <table class="table">
+        <thead class="thead-light">
             <tr>
+                <tr>
                 <th>E-Mail</th>
                 <th>First Name</th>
                 <th>Last Name</th>
             </tr>
+            </tr>
         </thead>
-
         <tbody>
             <tr th:each = "user : ${listUsers}">
                 <td th:text = "${user.email}"></td>
@@ -34,7 +42,13 @@
                 <td th:text = "${user.lastName}"></td>
             </tr>
         </tbody>
-        </table>
+    </table>
+</div>
+
+
+
+
+
 
 
         <nav aria-label="pagination domination" th:if="${totalPages > 1}" class="table-title">
