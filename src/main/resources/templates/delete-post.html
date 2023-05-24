@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+
+  <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>TEMA BLOG</title>
+    <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+<nav th:insert="fragments :: nav"></nav>
+
+<h1 class="delete-title-page" style="color:red;">Are you sure you want to delete this blog?</h1>
+
+<div id="delete-blog-Container">
+    <div class="blog-Container-delete">
+        <div class="blog-Container-title">
+            <h2 th:text = "${title}"></h2>
+        </div>
+        <div class="blog-Container-content">
+            <p th:text = "${content}"></p>
+        </div>
+        <div class="blog-Container-footer">
+            <p>Posted by: <span th:text = "${authorFullName}"></span> on <span th:text = "${date}"></span></p>
+        </div>
+    </div>
+</div>
+
+<div class="delete-page-buttons">
+    <div>
+        <a href="#" class="btn btn-default post" th:href="@{/posts}">Cancel</a>
+        <a href="#" class="btn btn-default post" th:href="@{/delete/{id}(id=${id})}">Delete</a>
+    </div>
+<footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>

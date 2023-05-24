@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>TEMA BLOG</title>
+    <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+ <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+
+<!-- Bootstrap JS bundle (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  
+    <nav th:insert="fragments :: nav"></nav>
+    
+    <h1 class="title-page">Explorez de nouveaux horizons avec Tema blog !</h1>
+    <div id="main-content">
+        <div id="three-blogs-holder">
+            <div id="recent-post-title">
+                <h2>Recent Posts</h2>
+            </div>
+            <div class="blog-Container" th:each="post : ${latest3posts}">
+                <div class="blog-Container-title">
+                    <h2 th:text = "${post.title}"></h2>
+                </div>
+                <div class="blog-Container-content">
+                    <p th:text = "${post.content}"></p>
+                </div>
+                <div class="blog-Container-footer">
+                    <p>Posted by: <span th:text = "${post.authorFullName}"></span> on <span th:text = "${post.date}"></span></p>
+                </div>
+                <img th:src="@{/images__${post.imagePath}__}" lt="Post Image" height="60px" />
+                
+            </div>
+        </div>
+        <div id="sidebar-holder">
+            <div class = "sidebar">
+                <div id="sidebar-title">
+                    <h3>Latest 5 Posts</h3>
+                </div>
+                <div id="sidebar-content">
+                    <div th:each="post : ${latest5posts}" class="sidebar-link">
+                        <a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.title}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:insert="fragments :: footer"></footer>
+
+</body>
+  <script>
+// Open and Close Navbar Menu
+const NavbarMenu = document.getElementById("menu");
+const burgerMenu = document.getElementById("burger");
+const bgOverlay = document.querySelector(".overlay");
+
+if (burgerMenu && bgOverlay) {
+   burgerMenu.addEventListener("click", () => {
+      NavbarMenu.classList.add("is-active");
+      bgOverlay.classList.toggle("is-active");
+   });
+
+   bgOverlay.addEventListener("click", () => {
+      NavbarMenu.classList.remove("is-active");
+      bgOverlay.classList.toggle("is-active");
+   });
+}
+
+// Close Navbar Menu on Links Click
+document.querySelectorAll(".menu-link").forEach((link) => {
+   link.addEventListener("click", () => {
+      NavbarMenu.classList.remove("is-active");
+      bgOverlay.classList.remove("is-active");
+   });
+});
+
+// Open and Close Search Bar Toggle
+const searchBlock = document.querySelector(".search-block");
+const searchToggle = document.getElementById("dd");
+const searchCancel = document.querySelector(".search-cancel");
+
+if (searchToggle && searchCancel) {
+   searchToggle.addEventListener("click", () => {
+      searchBlock.classList.add("is-active");
+   });
+
+   searchCancel.addEventListener("click", () => {
+      searchBlock.classList.remove("is-active");
+   });
+}
+
+</script>
+</html>
