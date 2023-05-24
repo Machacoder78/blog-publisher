@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+ 
+  <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>Publier un post</title>
+        
+    <link th:href="@{/js/scriptnav.js}" rel="java-script" type="text/js">
+ <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap-grid.css" integrity="sha512-ydsH43E0w5jdJF8+tvH1bRfnHmQ0fhhQZ3fKfQWgnLoWNeGVczK/A2tb4d6+/y8o0G62bSxizTGwpqgAp9Xd8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <nav th:insert="fragments :: nav"></nav>
+
+	<!--<main>
+	    <form class="blog-entry" action="#" th:action="@{/create}" th:object="${post}" method="POST" enctype="multipart/form-data">
+	        <div class="required-content">Fais nous part de tes commentaires! </div>
+		        <div>
+		            <input type="text" class = "title-input" name = "title" id="title" th:field="*{title}" placeholder="Enter Blog Title" th:required="required">
+		        </div>
+		        <div>
+		        	<textarea type="text" cols="40" rows="10" name="content" id="content" class = "content-input" th:field="*{content}" placeholder="Enter Blog Content" th:required="required"></textarea>
+		        </div>
+		        <label for="image">Image</label>
+		    	<input type="file" class="form-control-file" id="image" name="image">
+		        <div>
+		            <button type="submit" class="btn btn-default post">Poste</button>
+		            <a th:href="@{/posts}" class="btn btn-default cancel">Annuler</a>
+		        </div>
+	    	</div>
+	    </form>
+	</main>-->
+		<br>
+		<div class="container">
+		    <div class="row">
+		      <div class="col-md-12">
+		        <form method="POST" action="#" th:action="@{/create}" th:object="${post}" enctype="multipart/form-data">
+		          <div class="form-group">
+		            <input type="text" class="form-control" name="title" id="title" th:field="*{title}" placeholder="Title" th:required="required"/>
+		          </div>
+		          <br>
+		          <div class="form-group">
+		            <label > Image </label>
+		            <div class="input-group">
+		              <span class="input-group-btn">
+		                <span class="btn btn btn-file" style="border-width: 1px; border-color: #d1cfd4; color: #7030cb;">
+		                  Browse <input type="file" id="image" name="image" class="form-control-file">
+		                </span>
+		               </span>
+		              <input type="text" class="form-control" readonly>
+		             </div>
+		          </div>
+		          <br>
+		          <div class="form-group">
+		            <textarea class="form-control bcontent" name="content" id="content" th:field="*{content}" th:required="required"></textarea>
+		          </div>
+		          <br>
+		          <div class="form-group">
+		             <input type="submit" name="Submit" value="Publier" class="btn btn form-control post" style="border-width: 1px; border-color: #d1cfd4; color: #7030cb;"/><br>
+		           	 <a th:href="@{/posts}" class="btn btn form-control cancel" style="border-width: 1px; border-color: #d1cfd4; color: #7030cb;">Annuler</a>
+		          </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+	  		<br><br>
+	  
+	  
+    <footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+   <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>TEMA BLOG</title>
+    <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+<nav th:insert="fragments :: nav"></nav>
+
+<div class="Container">
+    <h1 th:text = "${title}"></h1>
+    <p th:text = "${authorFullName}"></p>
+    <p th:text = "${date}"></p>
+    <p th:text = "${content}"></p>
+    <p th:text = "${id}"></p>
+    
+    {% if post.imagePath != null %}
+    <img src="${post.imagePath}" alt="Post Image">
+
+{% endif %}
+    
+</div>
+
+<footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>
