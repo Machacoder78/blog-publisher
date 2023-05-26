@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org
+      xmlns:sec=http://www.thymeleaf.org/extras/spring-security
+      xmlns:shiro=http://www.pollix.at/thymeleaf/shiro>
+        
+        
+        
+<head> 
+	<meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>TEMA BLOG</title>
+    <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap-grid.css" integrity="sha512-ydsH43E0w5jdJF8+tvH1bRfnHmQ0fhhQZ3fKfQWgnLoWNeGVczK/A2tb4d6+/y8o0G62bSxizTGwpqgAp9Xd8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <nav th:insert="fragments :: nav"></nav>
+
+      <div class="container">
+    <h1 class="mt-4 mb-4"  style="color: #7030cb;">Blogs</h1>
+
+    <!--<table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th>Auteur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="post : ${listPosts}">
+                <td th:text="${post.id}"></td>
+                <td th:text="${post.title}"></td>
+                <td th:text="${post.content}"></td>
+                <td th:text="${post.date}"></td>
+                <td th:text="${post.authorFullName}"></td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a th:href="@{/edit-post/{id}(id=${post.id})}" class="btn btn-info">
+                            <i class="fas fa-edit"></i> Modifier
+                        </a>
+                        <a th:href="@{/delete-post/{id}(id=${post.id})}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Supprimer
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>-->
+    
+    <div class="card text-center" th:each="post : ${myPosts}" style="color: #757575;">
+  		<div class="card-body">
+    		<h5 class="card-title" th:text="${post.title}"></h5>
+    		<p class="card-text" id="see" th:text="${post.content}"></p>
+    		<a id="toggle-btn">voir plus</a>
+  		</div>
+  		<div class="card-footer text-body-secondary" th:text="${post.date}"></div>
+  		<div class="btn-group" role="group">
+			<a th:href="@{/edit-post/{id}(id=${post.id})}" class="btn btn" style="color: #7030cb;">
+            	<i class="fas fa-edit"></i> Modifier
+            </a>
+            <a th:href="@{/delete-post/{id}(id=${post.id})}" class="btn btn" style="color: #7030cb;">
+                <i class="fas fa-trash"></i> Supprimer
+            </a>
+		</div>
+	</div>
+	<br><br>
+        
+            <nav aria-label="pagination domination" th:if="${totalPages > 1}" class="table-title">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled" style="font-size: 15px; color: #3a1027;">Total Users: [[${totalItems}]]</li>
+                    <br>
+                    <li class="page-item">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" th:if="${currentPage > 1}" th:href="@{'/pages/1'}">Premier</a>
+                        <span th:unless="${currentPage > 1}">Premier</span>
+                    </li>
+                    <li class="page-item">
+                        <a th:if="${currentPage > 1}" th:href="@{'/pages/' + ${currentPage - 1}}" class="page-link">&#60;</a>
+                        <span th:unless="${currentPage > 1}">&#60;</span> 
+                    </li>
+                    <li class="page-item">
+                        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/pages/' + ${i}}">[[${i}]]</a>
+                        <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;</span>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/pages/' + ${currentPage + 1}}">&#62;</a>
+                        <span th:unless="${currentPage < totalPages}">&#62;</span>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/pages/' + ${totalPages}}">Dernier</a>
+                        <span th:unless="${currentPage < totalPages}">Dernier</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+    <footer th:insert="fragments :: footer"></footer>
+
+	<script>
+		document.getElementById("toggle-btn").addEventListener("click", function() {
+		  var contentDiv = document.getElementById("see");
+		  var toggleBtn = document.getElementById("toggle-btn");
+		
+		  if (contentDiv.style.maxHeight) {
+		    // "See Less" mode
+		    contentDiv.style.maxHeight = null;
+		    toggleBtn.textContent = "Voir plus";
+		  } else {
+		    // "See More" mode
+		    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+		    toggleBtn.textContent = "See moins";
+		  }
+		});
+
+	</script>
+</body>
+</html>

@@ -67,5 +67,8 @@ public class PostServiceImpl implements PostService {
         return postRepository.searchPosts(keyword);
     }
 
-    
+    @Override
+    public List<Post> findPostsByUser(User user) {
+        return postRepository.findPostsByUser(user);
+    }
 }

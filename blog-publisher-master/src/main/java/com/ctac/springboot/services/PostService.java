@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.ctac.springboot.models.Post;
+import com.ctac.springboot.models.User;
 
 @Component
 public interface PostService {
@@ -19,5 +20,5 @@ public interface PostService {
     Optional<Post> findById(Long id);
     Page<Post> postPagination(int pageNo, int pageSize);
     List<Post> searchPosts(String keyword);
-
+    List<Post> findPostsByUser(User user);
 }

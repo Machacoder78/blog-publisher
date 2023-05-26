@@ -21,4 +21,5 @@ public interface UserService extends UserDetailsService {
     User getUserByUsername(String username);
 
     Optional<User> findById(Long id);
+    
 }

@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.ctac.springboot.models.Post;
+import com.ctac.springboot.models.User;
 
 import java.util.*;
 
@@ -18,5 +19,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     
     @Query("SELECT p FROM Post p LEFT JOIN FETCH p.author WHERE p.title LIKE %:keyword% OR p.content LIKE %:keyword% ORDER BY p.date DESC")
     List<Post> searchPosts(@Param("keyword") String keyword);
+    @Query("SELECT p FROM Post p LEFT JOIN FETCH p.author WHERE p.author = :user ORDER BY p.date DESC")
+    List<Post> findPostsByUser(@Param("user") User user);
 }
 

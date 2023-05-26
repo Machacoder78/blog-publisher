@@ -185,7 +185,14 @@ public class PostController {
 
     
     
-    
+    @GetMapping("/my-posts")
+    public String viewMyPosts(Model model) {
+        String authUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getUserByUsername(authUsername);
+        List<Post> myPosts = postService.findPostsByUser(user);
+        model.addAttribute("myPosts", myPosts);
+        return "my-posts";
+    }
     
 
     @GetMapping("/delete-post/{id}")

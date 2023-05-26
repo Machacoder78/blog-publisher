@@ -3,17 +3,10 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head>
-	
-	  
-        
-	
-	
-	
-<meta charset="UTF-8">
-    <link rel="icon" th:href="@{/images/logo.png}">
-    <title>TEMA LiveBlog</title>
+  <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/images/logo1.svg}">
+    <title>TEMA BLOG</title>
     <link th:href="@{/styles/nav-styles.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/styles/styles.css}" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
@@ -21,8 +14,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap-grid.css" integrity="sha512-ydsH43E0w5jdJF8+tvH1bRfnHmQ0fhhQZ3fKfQWgnLoWNeGVczK/A2tb4d6+/y8o0G62bSxizTGwpqgAp9Xd8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Need to add Elizabeth's CSS here when merged -->
 </head>
 
 <body>
@@ -105,15 +96,16 @@
 		<li sec:authorize="isAuthenticated()" class="menuitem">
 			<a id="a">Détails</a>
 			<ul class="dropdown">
-				<li><a th:href="@{/posts}">Postes</a></li>
-				<li><a th:href="@{/create-post}">Créer poste</a></li>
-				<li><a th:href="@{/users}">Utilisateurs</a></li>
+				<li sec:authorize="isAuthenticated() and hasRole('ROLE_ADMIN')"><a th:href="@{/posts}">Postes</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/create-post}">Créer poste</a></li>
+				<li sec:authorize="isAuthenticated() and hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Utilisateurs</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/my-posts}">Mes posts</a></li>
 			</ul>
 		</li>
 	</ul>
-	<li class="menu-log" sec:authorize="isAnonymous()"><a style="color: black;" href="users/register.html" sec:authorize="isAnonymous()" th:href="@{/register}">S'inscrire</a></liclass>
-	<li class="menu-log" sec:authorize="isAnonymous()"><a style="color: black;" href="users/login.html"  th:href="@{/login}">Connexion</a></li>
-	<li class="menu-log" sec:authorize="isAuthenticated()"><a style="color: black;" th:href="@{/logout}">Déconnexion</a></li>
+	<li class="menu-log" sec:authorize="isAnonymous()"><a  href="users/register.html" sec:authorize="isAnonymous()" th:href="@{/register}">S'inscrire</a></liclass>
+	<li class="menu-log" sec:authorize="isAnonymous()"><a  href="users/login.html"  th:href="@{/login}">Connexion</a></li>
+	<li class="menu-log" sec:authorize="isAuthenticated()"><a  th:href="@{/logout}">Déconnexion</a></li>
 
   </nav>
 </header>
