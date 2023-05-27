@@ -862,8 +862,13 @@ border-radius: 10%;
       padding-top: 20px;
     }
     
-    #see{
+    .see{
 		overflow: hidden;
 		transition: max-height 0.5s;
-		max-height: 100px; /* Adjust the height as per your requirement */
+		max-height: 50px; /* Adjust the height as per your requirement */
 	}
+	.toggle-btn{
+		text-decoration: none;
+        color: #757575;
+	}
+	

@@ -33,7 +33,8 @@
                 <div class="blog-Container-footer">
                     <p>Posté par: <span th:text = "${post.authorFullName}"></span> le <span th:text = "${post.date}"></span></p>
                 </div>
-                <img th:src="@{/images__${post.imagePath}__}" lt="Post Image" height="60px" />
+                <img th:src="@{/images__${post.imagePath}__}" alt="Post Image" height="60px" />
+
                 
             </div>
         </div>
