@@ -43,7 +43,7 @@
         </nav>-->
         
         
-   <header class="header" id="header" th:fragment="nav">
+  <header class="header" id="header" th:fragment="nav">
   <nav class="Navbar container">
 
     <a class="Brand" href="index.html" th:href="@{/}">
@@ -57,58 +57,44 @@
     </div>
     <span class="overlay"></span>
 
-   <div class="searchcontainer">
-    <form class="searchform" action="/search" method="get">
+    <div class="searchcontainer">
+      <form class="searchform" action="/search" method="get">
         <input type="text" class="searchinput" name="keyword" placeholder="Search...">
         <button type="submit" class="search-button">
-            <i class="bx bx-search search-toggle"></i>
+          <i class="bx bx-search search-toggle"></i>
         </button>
-    </form>
-</div>
-
+      </form>
     </div>
 
-    <!--<div class="menu" id="menu">
+    <div class="menu" id="menu">
       <ul class="menuinner">
-		   <li class="menuitem" sec:authorize="isAnonymous()"><a href="index.html" class="menu-link" th:href="@{/}"> Home</a></li>
-           <li class="menuitem" sec:authorize="isAuthenticated()"><a class="menu-link" th:href="@{/}">Home</a></li>-->
-      	
-      				<!--<li class="menuitem" sec:authorize="isAuthenticated()"><a class="menulink" th:href="@{/posts}">Posts</a></li>
-                    <li class="menuitem" sec:authorize="isAuthenticated()"><a class="menulink" th:href="@{/create-post}">Create Posts</a></li>
-                    <li class="menuitem" sec:authorize="isAuthenticated()"><a class="menulink" th:href="@{/users}">Users</a></li>-->
-                         
-                    <!--<li class="span-display" th:switch="${#authentication}? ${#authorization.expression('isAuthenticated()')} : ${false}">
-                        <span th:case="${false}"></span>
-                        <span th:case="${true}">Logged in as <span sec:authentication="principal.username">Username</span></span>
-                    </li>-->
-                         
-                        <!--<li class="menu-log" sec:authorize="isAnonymous()"><a  class="menu-link" href="users/register.html" sec:authorize="isAnonymous()" th:href="@{/register}"><i class="fa-solid fa-user-plus"></i> Register</a></li>
-                    <li class="menu-log" sec:authorize="isAnonymous()"><a  class="menu-link" href="users/login.html"  th:href="@{/login}"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
-                    <li class="menu-log" sec:authorize="isAuthenticated()"><a  class="menu-link" th:href="@{/logout}"><span class="glyphicon glyphicon-log-out glyph-font"></span> Logout</a></li>
-               
-      
-      </ul>
-    </div>-->
+        <li class="menuitem" sec:authorize="isAnonymous()"><a href="index.html" class="menu-link" th:href="@{/}">Home</a></li>
+        <li class="menuitem" sec:authorize="isAuthenticated()"><a class="menu-link" th:href="@{/}">Home</a></li>
+         <li class="menuitem" sec:authorize="isAuthenticated()"><a class="menu-link" th:href="@{/create-post}">Create Posts</a></li>
+         <li class="menuitem" sec:authorize="isAuthenticated()"><a  class="menu-link" th:href="@{/my-posts}">Mes posts</a></li>
+                    
 
-	<ul class="ul">
-		<li sec:authorize="isAnonymous()" class="menuitem"><a th:href="@{/}">Home</a></li>
-		<li sec:authorize="isAuthenticated()" class="menuitem"><a th:href="@{/}">Home</a></li>
-		<li sec:authorize="isAuthenticated()" class="menuitem">
-			<a id="a">Détails</a>
-			<ul class="dropdown">
-				<li sec:authorize="isAuthenticated() and hasRole('ROLE_ADMIN')"><a th:href="@{/posts}">Postes</a></li>
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/create-post}">Créer poste</a></li>
-				<li sec:authorize="isAuthenticated() and hasRole('ROLE_ADMIN')"><a th:href="@{/users}">Utilisateurs</a></li>
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/my-posts}">Mes posts</a></li>
-			</ul>
-		</li>
-	</ul>
-	<li class="menu-log" sec:authorize="isAnonymous()"><a  href="users/register.html" sec:authorize="isAnonymous()" th:href="@{/register}">S'inscrire</a></liclass>
-	<li class="menu-log" sec:authorize="isAnonymous()"><a  href="users/login.html"  th:href="@{/login}">Connexion</a></li>
-	<li class="menu-log" sec:authorize="isAuthenticated()"><a  th:href="@{/logout}">Déconnexion</a></li>
+        <li class="menu-link" sec:authorize="isAuthenticated() and hasRole('ADMIN')" id="dropdown">
+          <a class="dropdown-toggle" href="#" th:href="@{/}" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <ul class="dropdown-menu">
+            <li><a  th:href="@{/posts}">Posts</a></li>
+            <li><a class="menuitem" th:href="@{/users}">Users</a></li>
+          </ul>
+        </li>
+
+        <li class="span-display" th:switch="${#authentication}? ${#authorization.expression('isAuthenticated()')} : ${false}">
+          <span th:case="${false}"></span>
+          <span th:case="${true}">Logged in as <span sec:authentication="principal.username">Username</span></span>
+        </li>
+        <li class="menu-log" sec:authorize="isAnonymous()"><a class="menu-link" href="users/register.html" sec:authorize="isAnonymous()" th:href="@{/register}"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+        <li class="menu-log" sec:authorize="isAnonymous()"><a class="menu-link" href="users/login.html" th:href="@{/login}"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+        <li class="menu-log" sec:authorize="isAuthenticated()"><a class="menu-link" th:href="@{/logout}"><span class="glyphicon glyphicon-log-out glyph-font"></span> Logout</a></li>
+      </ul>
+    </div>
 
   </nav>
 </header>
+
      
      
      

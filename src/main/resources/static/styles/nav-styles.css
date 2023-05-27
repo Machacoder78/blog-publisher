@@ -100,8 +100,7 @@
 	 left: -100%;
 	 width: 80%;
 	 height: 100%;
-	 z-index: 10;
-	 overflow-y: auto;
+	
 	 background-color: var(--color-white);
 	 box-shadow: var(--shadow-medium);
 	 transition: all 0.5s ease-in-out;
@@ -205,7 +204,7 @@ text-align: center;
  .overlay.is-active {
 	 display: block;
 	 opacity: 1;
-	 visibility: visible;
+	 visibility: hidden;
 }
  .search-toggle, .search-cancel {
 	 display: block;
@@ -256,7 +255,7 @@ text-align: center;
 }
  
  .searchcontainer{
- position: relative;
+
  padding: 0;
  bottom: 10%;
  width: 30%;
@@ -276,44 +275,7 @@ text-align: center;
 	}
 }
 
-/*hasna
 
-.ul{
-	list-style: none;
-	bottom: 10;
-}
-.ul li{
-	display: inline-block;
-	position: relative;
-}
-.ul li a{
-	display: block;
-	padding: 25px 25px;
-	color: black;
-	text-decoration: none;
-	font-size: 18px;
-}
-.ul li:hover #a{
-	background-color: #7030cb;
-}
-ul li ul.dropdown li{
-	display: block;
-}
-ul li ul.dropdown li:hover{
-	background-color: #7030cb;
-}
-ul li ul.dropdown{
-	width: 100%;
-	background: #FFF;
-	position: absolute;
-	z-index: 999;
-	display: none;
-}
-ul li:hover ul.dropdown{
-	display: block;
-	background-color: #FFF;
-	color: #FFF;
-}*/
 
 .ul{
 	float: right;
@@ -323,7 +285,7 @@ nav .ul li{
 	list-style: none;
 	position: relative;
 }
-nav .ul li a{
+#a{
 	text-decoration: none;
 	font-family: sans-serif;
 	color: black;
@@ -331,7 +293,7 @@ nav .ul li a{
 	padding: 0px 16px;
 	display: block;
 }
-nav .ul li a:hover{
+#a:hover{
 	background-color: #7030cb;
 	color: #FFF;
 }
@@ -350,10 +312,70 @@ nav .ul li ul li{
 	padding: 6px;
 	
 }
-nav .ul li ul li a{
+#a{
 	padding: 10px 16px;
 }
 #a:hover{
 	color: #FFF;
 }
+
+
+
+
+
+ 
+#dropdown {
+  position: relative;
+  margin-top: 10px;
+}
+
+.dropdown-toggle::after {
+  content: "▼";
+  margin-left: 5px;
+ 
+}
+.dropdown-toggle{
+	 color: black;
+  
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 150px;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+#dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

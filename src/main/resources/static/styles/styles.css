@@ -12,7 +12,7 @@
 
 .alert-danger, .alert-info {
     margin-top: -40px !important;
-color: red;
+	color: red;
 }
 
 .container-fluid {
@@ -807,9 +807,6 @@ div > .cancel {
 max-width: 20%;
 vertical-align: middle;
 display: inline;
-}
- a {
-	 color: #7e8ba3;
 }
  .register {
 box-shadow: 0 40px 100px #a694c0;

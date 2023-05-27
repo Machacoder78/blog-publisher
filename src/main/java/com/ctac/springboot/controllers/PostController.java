@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Controller
 public class PostController {
 
-    @Autowired
+   
     private PostService postService;
     private UserService userService;
 

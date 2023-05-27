@@ -1,5 +1,7 @@
 package com.ctac.springboot.models;
 
+import java.util.Collection;
+
 import javax.persistence.*;
 import javax.persistence.GenerationType;
 
@@ -15,6 +17,9 @@ public class Role {
     public Role() {
 
     }
+    @ManyToMany(mappedBy = "roles")
+    private Collection<User> users;
+
 
     public Role(String name) {
         super();
