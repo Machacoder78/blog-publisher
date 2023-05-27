@@ -82,10 +82,11 @@
           </ul>
         </li>
 
-        <li class="span-display" th:switch="${#authentication}? ${#authorization.expression('isAuthenticated()')} : ${false}">
-          <span th:case="${false}"></span>
-          <span th:case="${true}">Logged in as <span sec:authentication="principal.username">Username</span></span>
-        </li>
+      <li class="span-display" th:switch="${#authentication}? ${#authorization.expression('isAuthenticated()')} : ${false}">
+    <span th:case="${false}"></span>
+    <span th:case="${true}">Logged in as <span sec:authentication="principal.firstName">First Name</span> <span sec:authentication="principal.lastName">Last Name</span></span>
+</li>
+
         <li class="menu-log" sec:authorize="isAnonymous()"><a class="menu-link" href="users/register.html" sec:authorize="isAnonymous()" th:href="@{/register}"><i class="fa-solid fa-user-plus"></i> Register</a></li>
         <li class="menu-log" sec:authorize="isAnonymous()"><a class="menu-link" href="users/login.html" th:href="@{/login}"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
         <li class="menu-log" sec:authorize="isAuthenticated()"><a class="menu-link" th:href="@{/logout}"><span class="glyphicon glyphicon-log-out glyph-font"></span> Logout</a></li>

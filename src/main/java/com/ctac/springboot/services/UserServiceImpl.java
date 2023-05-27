@@ -58,14 +58,25 @@ public class UserServiceImpl implements UserService{
             throw new UsernameNotFoundException("Invalid username or password.");
         }
 
-        user.getRoles().size(); // Eagerly fetch the roles
+        user.getRoles().size(); 
 
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
                 mapRolesToAuthorities(user.getRoles())
-        );
+        ) {
+            private static final long serialVersionUID = 1L;
+
+			public String getFirstName() {
+                return user.getFirstName();
+            }
+
+            public String getLastName() {
+                return user.getLastName();
+            }
+        };
     }
+
 
 
     @Override
